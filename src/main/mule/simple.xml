@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="1451fa5b-0891-40ee-a5e6-bd900053c879" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="simpleFlow" doc:id="e533c642-e4d2-432e-bac6-48fcdb123e30" >
+		<http:listener doc:name="Listener" doc:id="2155cf3c-2438-4b46-94d0-3ccf4094717a" config-ref="HTTP_Listener_config" path="/simple"/>
+		<logger level="INFO" doc:name="Logger" doc:id="651b1603-ccc9-4321-b9bc-ae74a408dac9" message="#['Request Received. Sending &quot;Hello World&quot; Response.']"/>
+		<set-payload value="#['Hello World']" doc:name="Set Payload" doc:id="c848c93e-7390-48e1-9a04-fd41a1b16130" />
+	</flow>
+</mule>
